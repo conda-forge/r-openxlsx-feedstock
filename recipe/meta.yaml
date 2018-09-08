@@ -1,5 +1,4 @@
-{% set version = '4.0.17' %}
-
+{% set version = '4.1.0' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,51 +9,57 @@ package:
 source:
   fn: openxlsx_{{ version }}.tar.gz
   url:
-    - https://cran.r-project.org/src/contrib/openxlsx_{{ version }}.tar.gz
-    - https://cran.r-project.org/src/contrib/Archive/openxlsx/openxlsx_{{ version }}.tar.gz
-  sha256: 116b9829c5a85ab1b7368d9f7f34a2248436f54bbf6ad635186c8a70b5a204d7
+    - {{ cran_mirror }}/src/contrib/openxlsx_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/openxlsx/openxlsx_{{ version }}.tar.gz
+  sha256: ab7b127353061a0e1cd621783366ffdd7c858c6df31cbbdd39aaa353af10ffd8
 
 build:
   merge_build_host: True  # [win]
-  number: 1
+  number: 0
   skip: true  # [win32]
-
   rpaths:
     - lib/R/lib/
     - lib/
 
 requirements:
   build:
-    - posix                # [win]
-    - {{ compiler('c') }}        # [unix]
-    - {{ compiler('m2w64_c') }}  # [win]
-    - {{ compiler('cxx') }}        # [unix]
-    - {{ compiler('m2w64_cxx') }}  # [win]
+    - {{ compiler('c') }}        # [not win]
+    - {{ compiler('cxx') }}      # [not win]
+    - {{native}}toolchain        # [win]
+    - {{posix}}filesystem        # [win]
+    - {{posix}}make
+    - {{posix}}sed               # [win]
+    - {{posix}}coreutils         # [win]
+    - {{posix}}zip               # [win]
   host:
     - r-base
     - r-rcpp
-
+    - r-zip
   run:
     - r-base
+    - {{native}}gcc-libs         # [win]
     - r-rcpp
+    - r-zip
 
 test:
   commands:
-    - $R -e "library('openxlsx')"  # [not win]
+    - $R -e "library('openxlsx')"           # [not win]
     - "\"%R%\" -e \"library('openxlsx')\""  # [win]
 
 about:
   home: https://github.com/awalker89/openxlsx
-  license: GPL-3
+  license: MIT
   summary: Simplifies the creation of Excel .xlsx files by providing a high level interface to
     writing, styling and editing worksheets. Through the use of 'Rcpp', read/write times
     are comparable to the 'xlsx' and 'XLConnect' packages with the added benefit of
     removing the dependency on Java.
-  license_family: GPL3
+  license_family: MIT
 
 extra:
   recipe-maintainers:
-    - jdblischak
     - johanneskoester
     - bgruening
     - daler
+    - jdblischak
+    - cbrueffer
+    - dbast
