@@ -1,7 +1,7 @@
 About r-openxlsx
 ================
 
-Home: https://github.com/ycphs/openxlsx
+Home: https://ycphs.github.io/openxlsx/index.html, https://github.com/ycphs/openxlsx
 
 Package license: MIT
 

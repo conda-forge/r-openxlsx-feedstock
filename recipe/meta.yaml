@@ -1,4 +1,4 @@
-{% set version = '4.1.2' %}
+{% set version = '4.1.3' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/openxlsx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/openxlsx/openxlsx_{{ version }}.tar.gz
-  sha256: 7cc6ca20adb39e013553079729fc4df1457e9bdb6a96f1015c8e14c596dce426
+  sha256: dd576bd6d38f785f0095c0d9c73fd500775181f6c744f6d19c01b69ee08eff20
 
 build:
   merge_build_host: True  # [win]
@@ -33,11 +33,15 @@ requirements:
   host:
     - r-base
     - r-rcpp
+    - r-rlang >=0.1.2
+    - r-stringi
     - r-zip
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
     - r-rcpp
+    - r-rlang >=0.1.2
+    - r-stringi
     - r-zip
 
 test:
@@ -46,7 +50,7 @@ test:
     - "\"%R%\" -e \"library('openxlsx')\""  # [win]
 
 about:
-  home: https://github.com/ycphs/openxlsx
+  home: https://ycphs.github.io/openxlsx/index.html, https://github.com/ycphs/openxlsx
   license: MIT
   summary: Simplifies the creation of Excel .xlsx files by providing a high level interface to
     writing, styling and editing worksheets. Through the use of 'Rcpp', read/write times
@@ -61,27 +65,27 @@ extra:
   recipe-maintainers:
     - conda-forge/r
 
-# Package: openxlsx
 # Type: Package
+# Package: openxlsx
 # Title: Read, Write and Edit xlsx Files
-# Version: 4.1.2
-# Date: 2019-10-28
-# Authors@R: c(person("Philipp","Schauberger",email="philipp@schauberger.co.at",role=c("aut","cre")), person("Alexander", "Walker", email = "Alexander.Walker1989@gmail.com", role = c( "aut")), person("Luca", "Braglia", role = "ctb"))
-# URL: https://github.com/ycphs/openxlsx
-# BugReports: https://github.com/ycphs/openxlsx/issues
+# Version: 4.1.3
+# Date: 2019-11-07
+# Authors@R: c(person(given = "Philipp", family = "Schauberger", role = c("aut", "cre"), email = "philipp@schauberger.co.at"), person(given = "Alexander", family = "Walker", role = "aut", email = "Alexander.Walker1989@gmail.com"), person(given = "Luca", family = "Braglia", role = "ctb"))
 # Description: Simplifies the creation of Excel .xlsx files by providing a high level interface to writing, styling and editing worksheets. Through the use of 'Rcpp', read/write times are comparable to the 'xlsx' and 'XLConnect' packages with the added benefit of removing the dependency on Java.
 # License: MIT + file LICENSE
-# LinkingTo: Rcpp
-# Encoding: UTF-8
+# URL: https://ycphs.github.io/openxlsx/index.html, https://github.com/ycphs/openxlsx
+# BugReports: https://github.com/ycphs/openxlsx/issues
 # Depends: R (>= 3.3.0)
-# Imports: methods, Rcpp, grDevices, stats, utils, zip
+# Imports: grDevices, methods, Rcpp, stats, stringi, utils, zip, rlang (>= 0.1.2)
+# Suggests: knitr, pkgdown, testthat, roxygen2
+# LinkingTo: Rcpp
 # VignetteBuilder: knitr
-# Suggests: knitr, testthat
+# Encoding: UTF-8
 # RoxygenNote: 6.1.1
 # Collate: 'CommentClass.R' 'HyperlinkClass.R' 'RcppExports.R' 'class_definitions.R' 'StyleClass.R' 'WorkbookClass.R' 'baseXML.R' 'borderFunctions.R' 'chartsheet_class.R' 'conditional_formatting.R' 'helperFunctions.R' 'loadWorkbook.R' 'onUnload.R' 'openXL.R' 'openxlsx.R' 'openxlsxCoerce.R' 'readWorkbook.R' 'sheet_data_class.R' 'workbook_column_widths.R' 'workbook_read_workbook.R' 'workbook_write_data.R' 'worksheet_class.R' 'wrappers.R' 'writeData.R' 'writeDataTable.R' 'writexlsx.R'
 # NeedsCompilation: yes
-# Packaged: 2019-10-28 20:55:27 UTC; ceadm
+# Packaged: 2019-11-07 12:56:08 UTC; ceadm
 # Author: Philipp Schauberger [aut, cre], Alexander Walker [aut], Luca Braglia [ctb]
 # Maintainer: Philipp Schauberger <philipp@schauberger.co.at>
 # Repository: CRAN
-# Date/Publication: 2019-10-29 06:50:06 UTC
+# Date/Publication: 2019-11-07 13:40:02 UTC
