@@ -5,11 +5,9 @@ Home: https://ycphs.github.io/openxlsx/index.html, https://github.com/ycphs/open
 
 Package license: MIT
 
-Feedstock license: BSD-3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-openxlsx-feedstock/blob/master/LICENSE.txt)
 
 Summary: Simplifies the creation of Excel .xlsx files by providing a high level interface to writing, styling and editing worksheets. Through the use of 'Rcpp', read/write times are comparable to the 'xlsx' and 'XLConnect' packages with the added benefit of removing the dependency on Java.
-
-
 
 Current build status
 ====================
