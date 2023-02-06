@@ -1,4 +1,4 @@
-{% set version = "4.2.5.1" %}
+{% set version = "4.2.5.2" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/openxlsx_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/openxlsx/openxlsx_{{ version }}.tar.gz
-  sha256: 64d224380809d8d19788b02daf9d6dae45262594b81f5e013d37d34daf0945c8
+  sha256: ee7089e7e5832ef22ee0d0eebf7cca5096ce23afb2bcdb58700be62526fc9b67
 
 build:
   merge_build_host: true  # [win]
